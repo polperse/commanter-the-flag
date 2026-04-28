@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Commander the Flag v1.0 playtest rules, rendered as a readable web rules document."
+    />
+    <meta name="author" content="Pol Persello" />
+    <title>Rules · Commander the Flag</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="torch torch-left" aria-hidden="true">
+      <span class="flame"></span>
+      <span class="sconce"></span>
+    </div>
+    <div class="torch torch-right" aria-hidden="true">
+      <span class="flame"></span>
+      <span class="sconce"></span>
+    </div>
+    <div class="embers" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <header class="site-header">
+      <a class="brand" href="index.html#top" aria-label="Commander the Flag home">
+        <span class="brand-mark">CTF</span>
+        <span>
+          <strong>Commander the Flag</strong>
+          <small>v1.0 Playtest</small>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        Menu
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
+        <a href="index.html#how-to-play">How to Play</a>
+        <a href="rules.html" class="is-active">Rules</a>
+        <a href="index.html#keepers">Flag Keepers</a>
+        <a href="index.html#community">Community</a>
+        <a href="index.html#credits">Credits</a>
+        <a href="index.html#support">Support</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="rules-hero section-frame">
+        <p class="eyebrow">Official Format Rules</p>
+        <h1>
+          <span>Commander</span>
+          <span>the Flag</span>
+          <span>Rules</span>
+        </h1>
+        <p class="hero-lede">
+          The readable web version is generated from the Markdown playtest document so the rules
+          can stay easy to modify while still feeling like part of the site.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#rules-document">Start Reading</a>
+          <a class="button" href="COMMANDER_THE_FLAG_RULES.md">Open Markdown Rules</a>
+        </div>
+      </section>
+
+      <section class="rules-layout content-section">
+        <aside class="rules-index section-frame" aria-label="Rules index">
+          <p class="eyebrow">Index</p>
+          <nav id="rules-toc">
+            <p>Loading rules index...</p>
+          </nav>
+        </aside>
+
+        <article id="rules-document" class="rules-document section-frame" aria-live="polite">
+          <p>Loading rules...</p>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>
+        Commander the Flag was invented by Pol Persello
+        (<a href="https://twitter.com/polperse">@polperse</a>) on December 19, 2025.
+      </p>
+      <p>
+        Commander the Flag is an unofficial fan-made format for casual Commander play. It is not
+        affiliated with, endorsed, sponsored, or approved by Wizards of the Coast.
+      </p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="rules.js"></script>
+  </body>
+</html>
