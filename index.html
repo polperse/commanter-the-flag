@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Commander the Flag is a fan-made 2v2 Commander variant about breaching towers, defeating Flag Keepers, and stealing the enemy flag."
+    />
+    <meta name="author" content="Pol Persello" />
+    <title>Commander the Flag</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CreativeWork",
+        "name": "Commander the Flag",
+        "creator": {
+          "@type": "Person",
+          "name": "Pol Persello",
+          "sameAs": "https://twitter.com/polperse"
+        },
+        "dateCreated": "2025-12-19",
+        "description": "A fan-made 2v2 Commander variant about breaching towers, defeating Flag Keepers, and stealing the enemy flag."
+      }
+    </script>
+  </head>
+  <body>
+    <div class="torch torch-left" aria-hidden="true">
+      <span class="flame"></span>
+      <span class="sconce"></span>
+    </div>
+    <div class="torch torch-right" aria-hidden="true">
+      <span class="flame"></span>
+      <span class="sconce"></span>
+    </div>
+    <div class="embers" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Commander the Flag home">
+        <span class="brand-mark">CTF</span>
+        <span>
+          <strong>Commander the Flag</strong>
+          <small>v1.0 Playtest</small>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        Menu
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
+        <a href="#how-to-play">How to Play</a>
+        <a href="#rules">Rules</a>
+        <a href="#keepers">Flag Keepers</a>
+        <a href="#community">Community</a>
+        <a href="#credits">Credits</a>
+        <a href="#support">Support</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero section-frame">
+        <div class="hero-copy">
+          <p class="eyebrow">Fan-made 2v2 Commander siege format</p>
+          <h1>
+            <span>Breach the Wall.</span>
+            <span>Defeat the Keeper.</span>
+            <span>Steal the Flag.</span>
+          </h1>
+          <p class="hero-lede">
+            Commander the Flag turns casual Commander into a team objective battle:
+            break the enemy Tower, survive its guardian, carry the Flag home, and
+            hold both banners for three upkeeps.
+          </p>
+          <p class="hero-credit">
+            Created by <a href="https://twitter.com/polperse">Pol Persello</a> · December 19, 2025
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#how-to-play">Learn the Format</a>
+            <a class="button" href="COMMANDER_THE_FLAG_RULES.md">Read the Rules</a>
+          </div>
+        </div>
+
+        <div class="hero-table" aria-label="Commander the Flag table overview">
+          <div class="flag-card blue">
+            <img src="flag-keepers/Blue%20Flag.png" alt="Blue team flag token" />
+          </div>
+          <div class="tower-board">
+            <span class="label">Tower Zone</span>
+            <div class="wall-meter">
+              <span>Wall HP</span>
+              <strong>20</strong>
+            </div>
+            <div class="sigil">⚔</div>
+            <p>Flag Keeper guards the banner until the Wall falls.</p>
+          </div>
+          <div class="flag-card red">
+            <img src="flag-keepers/Red%20Flag.png" alt="Red team flag token" />
+          </div>
+        </div>
+      </section>
+
+      <section id="how-to-play" class="content-section">
+        <div class="section-heading">
+          <p class="eyebrow">The siege loop</p>
+          <h2>How a game is won</h2>
+          <p>
+            The format replaces player life totals with team Towers. You win by
+            controlling both Flags in your Tower long enough for the table to feel the pressure.
+          </p>
+        </div>
+
+        <div class="quest-steps">
+          <article>
+            <span>1</span>
+            <h3>Break the Wall</h3>
+            <p>Each Tower starts at 20 Wall HP. Attack it, trample through blockers, or aim damage at it.</p>
+          </article>
+          <article>
+            <span>2</span>
+            <h3>Assault the Keeper</h3>
+            <p>At 0 Wall HP, attackers can assault the Flag Keeper. Flying does not apply inside the Tower Zone.</p>
+          </article>
+          <article>
+            <span>3</span>
+            <h3>Capture the Flag</h3>
+            <p>After the Keeper falls, any creature with base power 2 or greater can take the enemy Flag.</p>
+          </article>
+          <article>
+            <span>4</span>
+            <h3>Survive the Retreat</h3>
+            <p>The carrier gains Ward {2}, but the Flag drops if the carrier leaves the battlefield.</p>
+          </article>
+          <article>
+            <span>5</span>
+            <h3>Hold for 3 Upkeeps</h3>
+            <p>Secure both Flags in your Tower and keep them there for three consecutive team upkeeps.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="rules" class="content-section split-section">
+        <div class="rules-panel section-frame">
+          <p class="eyebrow">Rules source</p>
+          <h2>Readable, editable rules</h2>
+          <p>
+            The format rules now live in Markdown so the playtest document can evolve without
+            fighting a PDF workflow.
+          </p>
+          <div class="rule-links">
+            <a class="button primary" href="COMMANDER_THE_FLAG_RULES.md">Open Markdown Rules</a>
+            <a class="button" href="Commander_de_Flag_Reglamento_Oficial.docx.pdf">Original PDF</a>
+          </div>
+        </div>
+
+        <div class="morale-panel">
+          <h3>New in v1.0 Playtest</h3>
+          <ul>
+            <li>Player life totals are replaced by team Tower rules.</li>
+            <li>When a Wall breaks, that team gains 20 Morale.</li>
+            <li>Life payment and life loss spend Morale after the breach.</li>
+            <li>Poison does nothing to intact Walls, then converts to Morale loss.</li>
+            <li>Wither drains Morale instead of shrinking Flag Keepers.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="keepers" class="content-section">
+        <div class="section-heading">
+          <p class="eyebrow">Choose your boss</p>
+          <h2>Flag Keepers</h2>
+          <p>
+            Ten alpha-test guardians define the first public pool. Their card-frame art sets the visual
+            language for the whole site: brass, parchment, torchlight, and dangerous little bosses.
+          </p>
+        </div>
+
+        <div class="keeper-grid">
+          <article class="keeper-card">
+            <img src="flag-keepers/Lantern%20Moth.png" alt="Lantern Moth Adept card" />
+            <h3>Lantern Moth Adept</h3>
+            <p>Weak · 2/1 · First Strike, Defensive Slash</p>
+          </article>
+          <article class="keeper-card">
+            <img src="flag-keepers/Clockwork%20Page.png" alt="Clockwork Page card" />
+            <h3>Clockwork Page</h3>
+            <p>Weak · 1/3 · Undying, Defensive Aura</p>
+          </article>
+          <article class="keeper-card">
+            <img src="flag-keepers/Runestone%20Gargoyle.png" alt="Runestone Gargoyle card" />
+            <h3>Runestone Gargoyle</h3>
+            <p>Intermediate · 3/3 · Protection, Defensive Aura</p>
+          </article>
+          <article class="keeper-card">
+            <img src="flag-keepers/Ashclaw%20Duelist.png" alt="Ashclaw Duelist card" />
+            <h3>Ashclaw Duelist</h3>
+            <p>Intermediate · 3/2 · Double Strike, Defensive Slash</p>
+          </article>
+          <article class="keeper-card">
+            <img src="flag-keepers/Otter%20Mage.png" alt="Mirrorlake Otter Mage card" />
+            <h3>Mirrorlake Otter Mage</h3>
+            <p>Intermediate · 2/4 · Protection, Defensive Aura</p>
+          </article>
+          <article class="keeper-card">
+            <img src="flag-keepers/Grimroot%20Stag.png" alt="Grimroot Stag card" />
+            <h3>Grimroot Stag</h3>
+            <p>Intermediate · 4/4 · Gym, Defensive Aura</p>
+          </article>
+          <article class="keeper-card">
+            <img src="flag-keepers/Stormcoil%20Serpent.png" alt="Stormcoil Serpent card" />
+            <h3>Stormcoil Serpent</h3>
+            <p>Intermediate · 3/5 · Yummy, Defensive Aura</p>
+          </article>
+          <article class="keeper-card">
+            <img src="flag-keepers/bastion%20Badger.png" alt="Bastion Badger card" />
+            <h3>Bastion Badger</h3>
+            <p>Intermediate · 3/3 · Deathtouch, Defensive Slash</p>
+          </article>
+          <article class="keeper-card">
+            <img src="flag-keepers/Obsidian%20Tortoise.png" alt="Obsidian Tortoise Matriarch card" />
+            <h3>Obsidian Tortoise Matriarch</h3>
+            <p>Strong · 5/6 · Protection, Heavy Armor</p>
+          </article>
+          <article class="keeper-card">
+            <img src="flag-keepers/Ironfur%20Bear.png" alt="Ironfur Dire Bear card" />
+            <h3>Ironfur Dire Bear</h3>
+            <p>Strong · 6/5 · Double Strike, Heavy Armor</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-section split-section">
+        <div class="coming-soon">
+          <p class="eyebrow">Later, after rules settle</p>
+          <h2>Live play tools</h2>
+          <p>
+            Wall trackers, Flag state helpers, and random Keeper tools are intentionally parked for
+            now. The rules need more table reps before the site starts encoding game state.
+          </p>
+        </div>
+
+        <div class="wall-art section-frame">
+          <img src="flag-keepers/The%20Wall%20(print%202).png" alt="Wall token card" />
+        </div>
+      </section>
+
+      <section id="community" class="content-section community-section">
+        <div>
+          <p class="eyebrow">Gather the party</p>
+          <h2>Community and submissions</h2>
+          <p>
+            Discord should be the first community hub: playtest reports, rules questions, custom
+            Flag Keeper ideas, and match stories all belong there before we build heavier submission tools.
+          </p>
+        </div>
+        <div class="community-cards">
+          <article>
+            <h3>Join Discord</h3>
+            <p>Coming soon. This will become the main hub for games, feedback, and rule debates.</p>
+            <a class="button disabled" href="#" aria-disabled="true">Discord Soon</a>
+          </article>
+          <article>
+            <h3>Submit a Keeper</h3>
+            <p>Scaffolded for later: name, stats, tier, abilities, flavor, gameplay role, and balance notes.</p>
+            <a class="button disabled" href="#" aria-disabled="true">Submissions Soon</a>
+          </article>
+        </div>
+      </section>
+
+      <section id="credits" class="content-section credits-section section-frame">
+        <div>
+          <p class="eyebrow">Authorship</p>
+          <h2>Credits</h2>
+          <p>
+            Commander the Flag was invented by <strong>Pol Persello</strong>
+            (<a href="https://twitter.com/polperse">@polperse</a>) on
+            <time datetime="2025-12-19">December 19, 2025</time>.
+          </p>
+        </div>
+        <p class="credit-note">
+          Please credit Pol Persello when sharing, remixing, playtesting, or publishing material
+          based on this format. The game is currently in v1.0 playtest.
+        </p>
+      </section>
+
+      <section id="support" class="content-section support-section section-frame">
+        <p class="eyebrow">Fuel the forge</p>
+        <h2>Support the project</h2>
+        <p>
+          Commander the Flag is a fan-made community format. A future Ko-fi or donation page can help
+          fund art, printable materials, web polish, organized playtesting, and community resources.
+        </p>
+        <a class="button disabled" href="#" aria-disabled="true">Ko-fi Coming Later</a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>
+        Commander the Flag is an unofficial fan-made format for casual Commander play. It is not
+        affiliated with, endorsed, sponsored, or approved by Wizards of the Coast.
+      </p>
+      <p>Made for playtesting, siege stories, and very suspicious Flag Keepers.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
