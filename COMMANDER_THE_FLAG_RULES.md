@@ -2,7 +2,7 @@
 
 **Official Format Rules**  
 **Version:** v1.0 Playtest — Updated Draft  
-**Created by:** Pol Persello (@polperse)  
+**Invented by:** Pol Persello (@polperse)  
 **Invented on:** December 19, 2025
 
 Commander the Flag is a fan-made casual 2v2 Commander format for *Magic: The Gathering*, built around territorial objectives, siege combat, team coordination, and dramatic flag captures.
