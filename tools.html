@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Live Commander the Flag play tools for random Flag Keepers, Wall HP, Morale, Flags, and captured turns."
+    />
+    <meta name="author" content="Pol Persello" />
+    <title>Play Tools · Commander the Flag</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="torch torch-left" aria-hidden="true">
+      <span class="flame"></span>
+      <span class="sconce"></span>
+    </div>
+    <div class="torch torch-right" aria-hidden="true">
+      <span class="flame"></span>
+      <span class="sconce"></span>
+    </div>
+    <div class="embers" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <header class="site-header">
+      <a class="brand" href="index.html#top" aria-label="Commander the Flag home">
+        <span class="brand-mark">CTF</span>
+        <span>
+          <strong>Commander the Flag</strong>
+          <small>v1.0 Playtest</small>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        Menu
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
+        <a href="index.html#how-to-play">How to Play</a>
+        <a href="rules.html">Rules</a>
+        <a href="index.html#keepers">Flag Keepers</a>
+        <a href="tools.html" class="is-active">Play Tools</a>
+        <a href="index.html#community">Community</a>
+        <a href="index.html#credits">Credits</a>
+        <a href="index.html#support">Support</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="rules-hero section-frame tools-hero">
+        <p class="eyebrow">Live Table Assistant</p>
+        <h1>
+          <span>Play</span>
+          <span>Tools</span>
+        </h1>
+        <p class="hero-lede">
+          Manual helpers for the parts of Commander the Flag that are easiest to forget:
+          random Keepers, Wall HP, Morale, Flag state, and captured-turn danger.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#team-trackers">Start Tracking</a>
+          <button class="button danger-button" type="button" data-reset-game>Reset Game</button>
+        </div>
+      </section>
+
+      <section class="content-section tools-setup section-frame">
+        <div class="section-heading">
+          <p class="eyebrow">Setup</p>
+          <h2>Random Flag Keepers</h2>
+          <p>
+            Assign one random Flag Keeper to each team. Reroll manually if your table wants a
+            different playtest experience.
+          </p>
+        </div>
+
+        <div class="keeper-tools-grid">
+          <article class="keeper-assignment team-red" data-keeper-panel="red">
+            <div class="tool-panel-header">
+              <p class="eyebrow">Red Tower</p>
+              <button class="button small-button" type="button" data-random-keeper="red">
+                Randomize
+              </button>
+            </div>
+            <div class="assigned-keeper">
+              <img data-keeper-image="red" src="flag-keepers/Red%20Flag.png" alt="Red team flag token" />
+              <div>
+                <h3 data-keeper-name="red">No Keeper assigned</h3>
+                <p data-keeper-details="red">Roll a random Flag Keeper to defend this Tower.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="keeper-assignment team-blue" data-keeper-panel="blue">
+            <div class="tool-panel-header">
+              <p class="eyebrow">Blue Tower</p>
+              <button class="button small-button" type="button" data-random-keeper="blue">
+                Randomize
+              </button>
+            </div>
+            <div class="assigned-keeper">
+              <img data-keeper-image="blue" src="flag-keepers/Blue%20Flag.png" alt="Blue team flag token" />
+              <div>
+                <h3 data-keeper-name="blue">No Keeper assigned</h3>
+                <p data-keeper-details="blue">Roll a random Flag Keeper to defend this Tower.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="team-trackers" class="content-section team-tools-grid">
+        <article class="team-tracker section-frame team-red" data-team="red">
+          <div class="tool-panel-header">
+            <div>
+              <p class="eyebrow">Red Team</p>
+              <h2>Red Tower</h2>
+            </div>
+            <button class="button small-button" type="button" data-reset-team="red">Reset Red</button>
+          </div>
+
+          <div class="stat-tracker" data-wall-tracker="red">
+            <div class="stat-adjustments stat-adjustments-negative" aria-label="Reduce Red Wall HP">
+              <button type="button" data-wall-change="red:-5">-5</button>
+              <button type="button" data-wall-change="red:-1">-1</button>
+            </div>
+            <div class="resource-card stat-resource-card" data-wall-summary="red">
+              <span>Wall HP</span>
+              <strong data-wall-value="red">20</strong>
+              <small data-wall-status="red">Intact</small>
+            </div>
+            <div class="stat-adjustments stat-adjustments-positive" aria-label="Increase Red Wall HP">
+              <button type="button" data-wall-change="red:1">+1</button>
+              <button type="button" data-wall-change="red:5">+5</button>
+            </div>
+          </div>
+
+          <div class="breach-banner" data-breach-summary="red" data-wall-broken-summary="red" hidden>
+            <strong>Wall broken.</strong>
+            <span>Morale is active.</span>
+          </div>
+          <div class="stat-tracker" data-morale-controls="red" hidden>
+            <div class="stat-adjustments stat-adjustments-negative" aria-label="Reduce Red Morale">
+              <button type="button" data-morale-change="red:-5">-5</button>
+              <button type="button" data-morale-change="red:-1">-1</button>
+            </div>
+            <div class="resource-card stat-resource-card" data-morale-summary="red">
+              <span>Morale</span>
+              <strong class="resource-text-value" data-morale-value="red">Inactive</strong>
+              <small data-morale-status="red">Break the Wall to activate</small>
+            </div>
+            <div class="stat-adjustments stat-adjustments-positive" aria-label="Increase Red Morale">
+              <button type="button" data-morale-change="red:1">+1</button>
+              <button type="button" data-morale-change="red:5">+5</button>
+            </div>
+          </div>
+          <p class="modifier-callout" data-keeper-modifier="red" data-morale-controls="red" hidden>
+            Keeper modifier: none yet.
+          </p>
+
+          <div class="control-group" data-flag-controls="red" hidden>
+            <h3>Red Flag State</h3>
+            <div class="state-toggle" role="group" aria-label="Red Flag state">
+              <button type="button" data-flag-state-button="red:secured">Secured</button>
+              <button type="button" data-flag-state-button="red:dropped">Dropped</button>
+              <button type="button" data-flag-state-button="red:captured">Captured</button>
+            </div>
+          </div>
+
+          <div class="control-group" data-captured-controls="red" hidden>
+            <h3>Captured Turns</h3>
+            <div class="captured-turns-card" data-captured-summary="red">
+              <span>Captured Turns</span>
+              <strong><span data-captured-value="red">0</span><span>/3</span></strong>
+              <small data-captured-status="red">Flag is safe</small>
+            </div>
+            <p class="tool-note">If Red's Flag stays captured for 3 turns, Red loses.</p>
+            <div class="button-row">
+              <button type="button" data-captured-change="red:-1">-1</button>
+              <button type="button" data-captured-change="red:1">+1</button>
+            </div>
+            <p class="victory-message" data-victory-message="red" aria-live="polite" hidden></p>
+          </div>
+        </article>
+
+        <article class="team-tracker section-frame team-blue" data-team="blue">
+          <div class="tool-panel-header">
+            <div>
+              <p class="eyebrow">Blue Team</p>
+              <h2>Blue Tower</h2>
+            </div>
+            <button class="button small-button" type="button" data-reset-team="blue">Reset Blue</button>
+          </div>
+
+          <div class="stat-tracker" data-wall-tracker="blue">
+            <div class="stat-adjustments stat-adjustments-negative" aria-label="Reduce Blue Wall HP">
+              <button type="button" data-wall-change="blue:-5">-5</button>
+              <button type="button" data-wall-change="blue:-1">-1</button>
+            </div>
+            <div class="resource-card stat-resource-card" data-wall-summary="blue">
+              <span>Wall HP</span>
+              <strong data-wall-value="blue">20</strong>
+              <small data-wall-status="blue">Intact</small>
+            </div>
+            <div class="stat-adjustments stat-adjustments-positive" aria-label="Increase Blue Wall HP">
+              <button type="button" data-wall-change="blue:1">+1</button>
+              <button type="button" data-wall-change="blue:5">+5</button>
+            </div>
+          </div>
+
+          <div class="breach-banner" data-breach-summary="blue" data-wall-broken-summary="blue" hidden>
+            <strong>Wall broken.</strong>
+            <span>Morale is active.</span>
+          </div>
+          <div class="stat-tracker" data-morale-controls="blue" hidden>
+            <div class="stat-adjustments stat-adjustments-negative" aria-label="Reduce Blue Morale">
+              <button type="button" data-morale-change="blue:-5">-5</button>
+              <button type="button" data-morale-change="blue:-1">-1</button>
+            </div>
+            <div class="resource-card stat-resource-card" data-morale-summary="blue">
+              <span>Morale</span>
+              <strong class="resource-text-value" data-morale-value="blue">Inactive</strong>
+              <small data-morale-status="blue">Break the Wall to activate</small>
+            </div>
+            <div class="stat-adjustments stat-adjustments-positive" aria-label="Increase Blue Morale">
+              <button type="button" data-morale-change="blue:1">+1</button>
+              <button type="button" data-morale-change="blue:5">+5</button>
+            </div>
+          </div>
+          <p class="modifier-callout" data-keeper-modifier="blue" data-morale-controls="blue" hidden>
+            Keeper modifier: none yet.
+          </p>
+
+          <div class="control-group" data-flag-controls="blue" hidden>
+            <h3>Blue Flag State</h3>
+            <div class="state-toggle" role="group" aria-label="Blue Flag state">
+              <button type="button" data-flag-state-button="blue:secured">Secured</button>
+              <button type="button" data-flag-state-button="blue:dropped">Dropped</button>
+              <button type="button" data-flag-state-button="blue:captured">Captured</button>
+            </div>
+          </div>
+
+          <div class="control-group" data-captured-controls="blue" hidden>
+            <h3>Captured Turns</h3>
+            <div class="captured-turns-card" data-captured-summary="blue">
+              <span>Captured Turns</span>
+              <strong><span data-captured-value="blue">0</span><span>/3</span></strong>
+              <small data-captured-status="blue">Flag is safe</small>
+            </div>
+            <p class="tool-note">If Blue's Flag stays captured for 3 turns, Blue loses.</p>
+            <div class="button-row">
+              <button type="button" data-captured-change="blue:-1">-1</button>
+              <button type="button" data-captured-change="blue:1">+1</button>
+            </div>
+            <p class="victory-message" data-victory-message="blue" aria-live="polite" hidden></p>
+          </div>
+        </article>
+      </section>
+
+      <section class="content-section split-section">
+        <article class="upkeep-helper section-frame">
+          <p class="eyebrow">Upkeep Helper</p>
+          <h2>Check captured turns</h2>
+          <ol class="checklist">
+            <li>Resolve Flag securing and returning checks for the active team.</li>
+            <li>If a team's Flag is captured, increase that team's captured-turn counter.</li>
+            <li>If a team's Flag is no longer captured, reset that captured-turn counter.</li>
+            <li>At 3 captured turns, that team loses and the opposing team wins.</li>
+          </ol>
+        </article>
+
+        <article class="quick-reference section-frame">
+          <p class="eyebrow">Quick Reference</p>
+          <h2>Rules reminders</h2>
+          <ul>
+            <li>Wall breaks permanently when it reaches 0 HP.</li>
+            <li>Broken Wall activates 20 Morale.</li>
+            <li>Morale caps at 20 and cannot go below 0.</li>
+            <li>Poison after breach is 2 Morale loss per poison counter.</li>
+            <li>Wither/infect damage to a Keeper drains Morale instead.</li>
+            <li>Base power 2 or greater is required to capture or pick up a Flag.</li>
+            <li>Evasion can reach the Keeper, but cannot bypass it.</li>
+          </ul>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>
+        Commander the Flag was invented by Pol Persello
+        (<a href="https://twitter.com/polperse">@polperse</a>) on December 19, 2025.
+      </p>
+      <p>
+        Commander the Flag is an unofficial fan-made format for casual Commander play. It is not
+        affiliated with, endorsed, sponsored, or approved by Wizards of the Coast.
+      </p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="tools.js"></script>
+  </body>
+</html>
