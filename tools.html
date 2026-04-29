@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Live Commander the Flag play tools for random Flag Keepers, Wall HP, Morale, Flags, and captured turns."
+      content="Live Commander the Flag play tools for random Flag Keepers, Wall HP, Morale, Flags, and victory upkeeps."
     />
     <meta name="author" content="Pol Persello" />
     <title>Play Tools · Commander the Flag</title>
@@ -62,7 +62,7 @@
         </h1>
         <p class="hero-lede">
           Manual helpers for the parts of Commander the Flag that are easiest to forget:
-          random Keepers, Wall HP, Morale, Flag state, and captured-turn danger.
+          random Keepers, Wall HP, Morale, Flag state, and victory-upkeep danger.
         </p>
         <div class="hero-actions">
           <a class="button primary" href="#team-trackers">Start Tracking</a>
@@ -168,19 +168,21 @@
             <h3>Red Flag State</h3>
             <div class="state-toggle" role="group" aria-label="Red Flag state">
               <button type="button" data-flag-state-button="red:secured">Secured</button>
-              <button type="button" data-flag-state-button="red:dropped">Dropped</button>
-              <button type="button" data-flag-state-button="red:captured">Captured</button>
+              <button type="button" data-flag-state-button="red:capt-drop">Capt / Drop</button>
+              <button type="button" data-flag-state-button="red:seized">Seized</button>
             </div>
           </div>
 
           <div class="control-group" data-captured-controls="red" hidden>
-            <h3>Captured Turns</h3>
+            <h3>Victory Upkeeps</h3>
             <div class="captured-turns-card" data-captured-summary="red">
-              <span>Captured Turns</span>
+              <span>Blue Victory Upkeeps</span>
               <strong><span data-captured-value="red">0</span><span>/3</span></strong>
-              <small data-captured-status="red">Flag is safe</small>
+              <small data-captured-status="red">Red Flag is not seized</small>
             </div>
-            <p class="tool-note">If Red's Flag stays captured for 3 turns, Red loses.</p>
+            <p class="tool-note">
+              Blue only scores while the Red Flag is seized and the Blue Flag is secured.
+            </p>
             <div class="button-row">
               <button type="button" data-captured-change="red:-1">-1</button>
               <button type="button" data-captured-change="red:1">+1</button>
@@ -241,19 +243,21 @@
             <h3>Blue Flag State</h3>
             <div class="state-toggle" role="group" aria-label="Blue Flag state">
               <button type="button" data-flag-state-button="blue:secured">Secured</button>
-              <button type="button" data-flag-state-button="blue:dropped">Dropped</button>
-              <button type="button" data-flag-state-button="blue:captured">Captured</button>
+              <button type="button" data-flag-state-button="blue:capt-drop">Capt / Drop</button>
+              <button type="button" data-flag-state-button="blue:seized">Seized</button>
             </div>
           </div>
 
           <div class="control-group" data-captured-controls="blue" hidden>
-            <h3>Captured Turns</h3>
+            <h3>Victory Upkeeps</h3>
             <div class="captured-turns-card" data-captured-summary="blue">
-              <span>Captured Turns</span>
+              <span>Red Victory Upkeeps</span>
               <strong><span data-captured-value="blue">0</span><span>/3</span></strong>
-              <small data-captured-status="blue">Flag is safe</small>
+              <small data-captured-status="blue">Blue Flag is not seized</small>
             </div>
-            <p class="tool-note">If Blue's Flag stays captured for 3 turns, Blue loses.</p>
+            <p class="tool-note">
+              Red only scores while the Blue Flag is seized and the Red Flag is secured.
+            </p>
             <div class="button-row">
               <button type="button" data-captured-change="blue:-1">-1</button>
               <button type="button" data-captured-change="blue:1">+1</button>
@@ -266,12 +270,12 @@
       <section class="content-section split-section">
         <article class="upkeep-helper section-frame">
           <p class="eyebrow">Upkeep Helper</p>
-          <h2>Check captured turns</h2>
+          <h2>Check victory upkeeps</h2>
           <ol class="checklist">
             <li>Resolve Flag securing and returning checks for the active team.</li>
-            <li>If a team's Flag is captured, increase that team's captured-turn counter.</li>
-            <li>If a team's Flag is no longer captured, reset that captured-turn counter.</li>
-            <li>At 3 captured turns, that team loses and the opposing team wins.</li>
+            <li>If your Flag is secured and the enemy Flag is seized, increase your victory upkeeps.</li>
+            <li>If your Flag is not secured, reset your victory upkeeps to 0.</li>
+            <li>At 3 victory upkeeps, that team wins.</li>
           </ol>
         </article>
 

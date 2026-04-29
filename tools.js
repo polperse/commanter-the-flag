@@ -80,12 +80,16 @@ const defaultState = () => ({
 const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 
 const normalizeFlagState = (flagState) => {
-  if (flagState === "carried" || flagState === "enemy-secured") {
-    return "captured";
+  if (
+    flagState === "captured" ||
+    flagState === "enemy-secured" ||
+    flagState === "seized"
+  ) {
+    return "seized";
   }
 
-  if (flagState === "dropped") {
-    return "dropped";
+  if (flagState === "carried" || flagState === "dropped" || flagState === "capt-drop") {
+    return "capt-drop";
   }
 
   return "secured";
@@ -121,7 +125,28 @@ const saveState = () => {
 
 const getTeam = (team) => state[team];
 
-const getOpponent = (team) => (team === "red" ? "Blue" : "Red");
+const getOpponentKey = (team) => (team === "red" ? "blue" : "red");
+
+const getTeamName = (team) => (team === "red" ? "Red" : "Blue");
+
+const syncVictoryUpkeeps = () => {
+  let changed = false;
+
+  ["red", "blue"].forEach((flagOwner) => {
+    const scoringTeam = getOpponentKey(flagOwner);
+    const canScore =
+      state[flagOwner].wallBroken &&
+      state[flagOwner].flagState === "seized" &&
+      state[scoringTeam].flagState === "secured";
+
+    if (!canScore && state[flagOwner].capturedTurns !== 0) {
+      state[flagOwner].capturedTurns = 0;
+      changed = true;
+    }
+  });
+
+  return changed;
+};
 
 const getRandomKeeper = () => keepers[Math.floor(Math.random() * keepers.length)];
 
@@ -194,22 +219,29 @@ const renderKeeper = (team) => {
 
 const renderTeam = (team) => {
   const teamState = getTeam(team);
-  const flagIsCaptured = teamState.wallBroken && teamState.flagState === "captured";
-  const hasLostToCapture = flagIsCaptured && teamState.capturedTurns === 3;
-  const teamName = team === "red" ? "Red" : "Blue";
-  const opponentName = getOpponent(team);
+  const scoringTeam = getOpponentKey(team);
+  const flagIsSeized = teamState.wallBroken && teamState.flagState === "seized";
+  const scorerHasFlagHome = getTeam(scoringTeam).flagState === "secured";
+  const canScoreVictoryUpkeep = flagIsSeized && scorerHasFlagHome;
+  const hasLostToCapture = canScoreVictoryUpkeep && teamState.capturedTurns === 3;
+  const teamName = getTeamName(team);
+  const scoringTeamName = getTeamName(scoringTeam);
 
   setText(`[data-wall-value="${team}"]`, String(teamState.wallHp));
   setText(`[data-wall-status="${team}"]`, teamState.wallBroken ? "Broken forever" : "Alive");
   setText(`[data-captured-value="${team}"]`, String(teamState.capturedTurns));
   setText(
     `[data-captured-status="${team}"]`,
-    flagIsCaptured ? `${teamName} Flag is captured` : "Flag is safe",
+    flagIsSeized
+      ? canScoreVictoryUpkeep
+        ? `${scoringTeamName} can score this upkeep`
+        : `${scoringTeamName} cannot score until their Flag is secured`
+      : `${teamName} Flag is not seized`,
   );
   setText(`[data-keeper-modifier="${team}"]`, getMoraleModifier(teamState));
   setText(
     `[data-victory-message="${team}"]`,
-    `${opponentName} wins! ${teamName}'s Flag stayed captured for 3 turns.`,
+    `${scoringTeamName} wins! ${scoringTeamName} held the enemy Flag for 3 eligible upkeeps.`,
   );
   setHidden(`[data-wall-tracker="${team}"]`, teamState.wallBroken);
   setHidden(`[data-wall-summary="${team}"]`, teamState.wallBroken);
@@ -218,10 +250,16 @@ const renderTeam = (team) => {
   setHidden(`[data-morale-summary="${team}"]`, !teamState.wallBroken);
   setHidden(`[data-morale-controls="${team}"]`, !teamState.wallBroken);
   setHidden(`[data-flag-controls="${team}"]`, !teamState.wallBroken);
-  setHidden(`[data-captured-controls="${team}"]`, !flagIsCaptured);
+  setHidden(`[data-captured-controls="${team}"]`, !flagIsSeized);
   setHidden(`[data-victory-message="${team}"]`, !hasLostToCapture);
-  setDisabled(`[data-captured-change="${team}:-1"]`, !flagIsCaptured || teamState.capturedTurns === 0);
-  setDisabled(`[data-captured-change="${team}:1"]`, !flagIsCaptured || teamState.capturedTurns === 3);
+  setDisabled(
+    `[data-captured-change="${team}:-1"]`,
+    !canScoreVictoryUpkeep || teamState.capturedTurns === 0,
+  );
+  setDisabled(
+    `[data-captured-change="${team}:1"]`,
+    !canScoreVictoryUpkeep || teamState.capturedTurns === 3,
+  );
   setDisabled(`[data-wall-change="${team}:1"]`, teamState.wallHp === 20);
   setDisabled(`[data-wall-change="${team}:5"]`, teamState.wallHp === 20);
   setDisabled(`[data-morale-change="${team}:-1"]`, !teamState.wallBroken || teamState.morale === 0);
@@ -256,6 +294,10 @@ const renderTeam = (team) => {
 };
 
 const render = () => {
+  if (syncVictoryUpkeeps()) {
+    saveState();
+  }
+
   renderTeam("red");
   renderTeam("blue");
 };
@@ -307,9 +349,15 @@ const changeMorale = (team, delta) => {
 
 const changeCapturedTurns = (team, delta) => {
   const teamState = getTeam(team);
-  if (teamState.flagState !== "captured") {
+  const scoringTeam = getOpponentKey(team);
+
+  if (teamState.flagState !== "seized" || getTeam(scoringTeam).flagState !== "secured") {
+    syncVictoryUpkeeps();
+    saveState();
+    render();
     return;
   }
+
   teamState.capturedTurns = clamp(teamState.capturedTurns + delta, 0, 3);
   saveState();
   render();
@@ -350,10 +398,11 @@ document.querySelectorAll("[data-flag-state-button]").forEach((button) => {
     const teamState = getTeam(team);
     teamState.flagState = flagState;
 
-    if (flagState !== "captured") {
+    if (flagState !== "seized") {
       teamState.capturedTurns = 0;
     }
 
+    syncVictoryUpkeeps();
     saveState();
     render();
   });
