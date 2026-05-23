@@ -115,18 +115,10 @@ img {
 }
 
 .brand-mark {
-  display: grid;
+  display: block;
   width: 2.65rem;
   height: 2.65rem;
-  place-items: center;
-  border: 1px solid rgba(255, 216, 132, 0.55);
-  border-radius: 50%;
-  color: #1b0e08;
-  font-size: 0.82rem;
-  font-weight: 900;
-  letter-spacing: 0.12em;
-  background: radial-gradient(circle at 40% 35%, var(--gold-bright), var(--gold) 55%, var(--copper));
-  box-shadow: 0 0 22px rgba(232, 137, 35, 0.38);
+  flex-shrink: 0;
 }
 
 .brand strong,
